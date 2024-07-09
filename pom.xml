@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.progbits.db</groupId>
+    <artifactId>DataManager_jre21</artifactId>
+    <version>2.0.0</version>
+    <packaging>jar</packaging>
+
+    <url>http://maven.apache.org</url>
+
+    <description>
+        Data Manager using HikariCP
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>ProgbitsRepo</id>
+	    <url>https://archiva.progbits.com/coffer/repository/internal/</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>progbits</id>
+            <name>Internal Repo</name>
+            <url>https://archiva.progbits.com/coffer/repository/internal/</url>
+        </repository>
+    </distributionManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.10.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.progbits.api</groupId>
+            <artifactId>ApiCore_jre21</artifactId>
+            <version>[2,3)</version>
+        </dependency>
+        <dependency>
+            <groupId>com.progbits.api.config</groupId>
+            <artifactId>ConfigProvider_jre21</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.progbits.db</groupId>
+            <artifactId>SsDbUtils_jre21</artifactId>
+            <version>[2,3)</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>5.1.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.7.0</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+                        <phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+                    
+				</executions>
+			</plugin>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.3.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+                        <phase>package</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+        </plugins>
+
+    </build>
+
+</project>
