@@ -5,7 +5,7 @@
 
     <groupId>com.progbits.db</groupId>
     <artifactId>DataManager_jre21</artifactId>
-    <version>2.0.2</version>
+    <version>2.0.3</version>
     <packaging>jar</packaging>
 
     <url>http://maven.apache.org</url>
@@ -51,7 +51,7 @@
         <dependency>
             <groupId>com.progbits.api.config</groupId>
             <artifactId>ConfigProvider_jre21</artifactId>
-            <version>2.0.3</version>
+            <version>2.0.4</version>
         </dependency>
         <dependency>
             <groupId>com.progbits.db</groupId>
