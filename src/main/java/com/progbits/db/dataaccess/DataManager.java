@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.locks.ReentrantLock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +43,8 @@ public class DataManager implements ApiService {
 
     @Override
     public void configure() {
+        pullConfigs();
+        
         for (var entry : dbConfigs.keySet()) {
             ds.put(entry, setupPool(entry));
         }
@@ -79,17 +79,12 @@ public class DataManager implements ApiService {
 
         objRet.setString(DB_HOST, config.getStringProperty(DB_HOST + lclName));
         objRet.setString(DB_DRIVER, config.getStringProperty(DB_DRIVER + lclName));
-
-//        if (!objRet.isSet(DB_DRIVER)) {
-//            objRet.setString(DB_DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//        }
         objRet.setString(DB_NAME, config.getStringProperty(DB_NAME + lclName));
         objRet.setString(DB_USER, config.getStringProperty(DB_USER + lclName));
         objRet.setString(DB_PASSWORD, config.getStringProperty(DB_PASSWORD + lclName));
         objRet.setString(DB_TESTQUERY, config.getStringProperty(DB_TESTQUERY + lclName));
         objRet.setString(DB_MAXCONNECTIONS, config.getStringProperty(DB_MAXCONNECTIONS + lclName));
 
-        log.info("Db Maestro User: {}", config.getStringProperty("MAESTRO_POSTGRES_MEMBERCONTACTS_USERNAME_ADMIN"));
         return objRet;
     }
 
