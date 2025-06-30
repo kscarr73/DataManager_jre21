@@ -4,12 +4,14 @@ import com.progbits.api.exception.ApiException;
 import com.progbits.api.model.ApiObject;
 import com.progbits.api.utils.ApiResources;
 import com.progbits.db.SsDbUtils;
+import io.github.classgraph.Resource;
 import io.github.classgraph.ResourceList;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -79,6 +81,13 @@ public class DbUpdateApplication {
 
             log.info("Found {} Files", resources.size());
 
+            resources.sort(new Comparator<Resource>() {
+                @Override
+                public int compare(Resource o1, Resource o2) {
+                    return o1.getPath().compareTo(o2.getPath());
+                }
+            });
+            
             for (var entry : resources) {
                 Matcher match = pattern.matcher(entry.getPath());
 
